@@ -1,0 +1,179 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : May 17, 2017, 10:11:36 AM
+    Author     : anhgqse04763
+*/
+
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    font-size: 12px;
+    background-color: #E7E7E7;
+}
+
+.heading {
+    color: darkolivegreen;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.container {
+    width: 886px;
+    background: url("../img/bg.jpg") center; 
+    margin: 0 auto;
+}
+
+.inner {
+    margin: 0;
+    padding: 0 75px;
+}
+
+.news-name {
+    color: white;
+    font-weight: bold;
+    font-size: 20px;
+}
+
+/*---------------- Header ----------------*/
+.pre-header {
+    height: 71px;
+    background: url("../img/preheader.jpg") center no-repeat;
+}
+
+.header {
+    height: 78px;
+    background: url("../img/header.jpg") center no-repeat;
+}
+
+/*---------------- Menu ----------------*/
+.menu {
+    height: 32px;
+    background: url("../img/menu.jpg") center no-repeat;
+}
+
+.menu ul {
+    list-style-type: none;
+    line-height: 32px;
+}
+
+.menu li {
+    color: white;
+    font-weight: bold;
+}
+/*---------------- End: Menu ----------------*/
+
+/*---------------- Content ----------------*/
+.content {
+    background: url("../img/bg.jpg") center; 
+}
+
+.content-container {
+    height: 100%;
+}
+
+.content-container h1, .content-container p {
+    padding: 0 20px;
+}
+
+/*---- Artile ----*/
+.article {
+    width: 70%;
+    float: left;
+
+
+}
+
+.article img {
+    max-width: 80%;
+}
+
+.article-detail {
+    margin: 30px 20px 0px;
+    padding: 5px 0;
+    border-top: solid lightgrey 1px;
+    text-align: right;
+}
+
+.article-detail p {
+    display: inline-block;
+    color: darkolivegreen;
+    padding: 0;
+    margin: 0;
+}
+
+
+/*---- Aside ----*/
+.aside {
+    width: 29%;
+    margin-left: 70%;
+    border-left : dashed lightgrey 1px;
+    height: 650px;
+}
+
+.aside .heading {
+    margin-bottom: 0; 
+}
+
+.search input {
+    width: 130px;
+    margin: 5px 5px 0 20px; 
+    border: dashed darkolivegreen 1px;
+}
+
+.search a {
+    color: black;
+}
+
+.top5-last-news ul {
+    list-style-type: none;
+    padding-left: 20px;
+    margin-top: 5px;
+}
+
+.top5-last-news li {
+    margin: 15px 0;
+}
+
+.top5-last-news li a {
+    color: darkolivegreen;
+}
+
+.clear {
+    clear: both;
+}
+/*----------------End: Content ----------------*/
+
+/*---------------- Footer ----------------*/
+.footer {
+    height: 78px;
+    background: url("../img/footer.jpg") center no-repeat;
+}
+.ull{
+    list-style: none;
+    padding-left: 200px;
+}
+.ull li{
+    float: left;
+    margin-left: 10px;
+}
+.anh {
+    height: 9px;
+    width: 9px;
+    background: url("../img/comment.gif") no-repeat ;
+}
+.anh2 {
+    height: 9px;
+    width: 9px;
+    background: url("../img/timeicon.gif") no-repeat;
+}
+
+#button{
+    border: none;
+    background: none;
+    width: 30px;
+    margin-left: 0px;
+}
