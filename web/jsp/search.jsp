@@ -34,16 +34,16 @@
                 <div class="content-container inner">
                     <h2>${message}</h2>
                     <div class="result">
-                        <c:forEach var="article" items="${articles}">
+                        <c:forEach var="new" items="${newbypage}">
                             <div class="article">
                                 <p class="heading">
-                                    <a href="ArticleController?id=${article.id}">${article.title}</a>
+                                    <a href="ArticleController?id=${new.id}">${new.title}</a>
                                 </p>
                                 <p>
                                     Hello how are you
                                 </p>
                                 <div class="article-detail">
-                                    <p>By ${article.author} | ${article.time}</p>
+                                    <p>By ${new.author} | ${new.time}</p>
                                 </div>
 
                             </div>
@@ -60,10 +60,26 @@
                         </div>
                         <div class="search">
                             <p class="heading">Search</p>
-                            <form action="SearchController">
-                                <input type="text" id="search" name="search">
+                            <form action="SearchController" onsubmit="return validate();">
+                                <input type="text" id="search" name="search" >
                                 <input type="submit" id="button" value="Go">
                             </form>
+                            
+                            <script type="text/javascript">
+                                function validate()
+                                {
+                                    var search = document.getElementById("search");
+
+                                    var valid = true;
+                                    if (search.value.length <= 0 || search.value.trim().length <= 0)
+                                    {
+                                        alert("Please enter name");
+                                        valid = false;
+                                    }
+                                    return valid;
+                                }
+                                ;
+                            </script>
 
                         </div>
                         <div class="top5-last-news">
@@ -81,36 +97,23 @@
                     <div >
 
                         <% int maxPage = (Integer) request.getAttribute("maxpage");
-                            int pages = (Integer) request.getAttribute("page")+ 1;
-                            int size = (Integer) request.getAttribute("size");
+                            int pages = (Integer) request.getAttribute("page");
+                            //int size = (Integer) request.getAttribute("size");
 
-                            if (size % 2 == 0) {
-                                for (int i = 1; i <= maxPage; i++) {
-                                    if (pages == i) {%>
-
-                                    <%=i%> <%} else {%> 
-
-                        <a class="page"  href="SearchController?page=<%=i - 1%>&search=${search}"><%=i%></a><%}%>
-                        <% }
-                        } else {
-                            for (int i = 1; i <= maxPage + 1; i++) {
-
+                            // if (size % 2 == 0) {
+                            for (int i = 1; i <= maxPage; i++) {
                                 if (pages == i) {%>
 
-                        <%=i%> <%} else {%> 
+                        <%=i%> 
+                        <%} else {%> 
 
-                        <a class="page" href="SearchController?page=<%=i - 1%>&search=${search}"><%=i%></a><%}%>             
+                        <a class="page"  href="SearchController?page=<%=i%>&search=${search}"><%=i%></a>
+                        <%}%>
                         <% }
-                            }%>
+                            //}%>
 
 
-                        <%-- <c:if test="${page > 0}">
-                                                    <a href="SearchController?page=${page-1}&search=${search}">${page}</a>
-                                                </c:if>
-                                                ${page+1}
-                                                <c:if test="${page < maxpage}">
-                                                    <a href="SearchController?page=${page+1}&search=${search}">${page+2}</a>                           
-                        </c:if>--%>
+
                     </div>
                 </div>
 

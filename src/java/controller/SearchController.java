@@ -46,42 +46,52 @@ public class SearchController extends HttpServlet {
 
         // Display search results
         String search = request.getParameter("search");
-        
-        
-        if (search.equalsIgnoreCase("")) {
-            request.setAttribute("message", "Please Enter News Name!");
-        } else {
-            request.setAttribute("search", search);
 
+        if (search.length()==0||search.trim().length()==0) {
+            
+            request.setAttribute("message", "Please Enter News Name!");
+//            response.sendRedirect("jsp/search.jsp");
+        } else {
+            search=search.trim();
+            request.setAttribute("search", search);
             List<Article> size = articleDAO.getArticlesByTitle(search);
             request.setAttribute("size", size.size());
-            
+             request.setAttribute("message", "Have "+ size.size()+" results");
             String Spage = request.getParameter("page");
-          
-            int page = 0;
-            
+
+            int page = 1;
+
             if (Spage != null) {
 
                 page = Integer.parseInt(Spage);
             }
 
-            int num = 3;
+            int numPerPage = 3;
+            int allOfPage ;
 
-            
-            List<Article> articles = articleDAO.getArticlesByTitle(search);
-            request.setAttribute("maxpage", articles.size() / num);
 
-            
-            List<Article> paging = articleDAO.getArticlesByPaging(search,Math.min(page * num, articles.size())+1,Math.min(page * num + num, articles.size()));
-            
-           // articles = articles.subList(Math.min(page * num, articles.size()), Math.min(page * num + num, articles.size()));
 
-            request.setAttribute("articles", paging);
+            if (size.size() % numPerPage == 0) {
+                allOfPage = size.size() / numPerPage;
+            } else {
+                allOfPage = size.size() / numPerPage + 1;
+            }
 
+            request.setAttribute("maxpage", allOfPage);
+
+            List<Article> paging1 = articleDAO.getArticlesByPage(search, numPerPage, page);
+
+            request.setAttribute("newbypage", paging1);
+
+//            List<Article> paging = articleDAO.getArticlesByPaging(search,Math.min(page * numPerPage, size.size())+1,Math.min(page * numPerPage + numPerPage, size.size()));
+            // articles = articles.subList(Math.min(page * num, articles.size()), Math.min(page * num + num, articles.size()));
+//            request.setAttribute("articles", paging);
             request.setAttribute("page", page);
             // Display view
+             
         }
         request.getRequestDispatcher("jsp/search.jsp").forward(request, response);
+       
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

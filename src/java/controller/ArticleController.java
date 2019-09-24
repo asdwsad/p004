@@ -29,22 +29,21 @@ public class ArticleController extends HttpServlet {
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
      */
-
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        
+
         // Get top 5 lastest articles
         ArticleDAO articleDAO = new ArticleDAO();
         ArrayList<Article> topLastArticles = articleDAO.getTopLastArticles(5);
         request.setAttribute("topLastArticles", topLastArticles);
         System.out.println(topLastArticles);
-        
+
         // Get the lastest article shortcut
-        String lastestArticle = (topLastArticles == null) ? "" : 
-                topLastArticles.get(0).getContent().substring(0, 300) + "...";
+        String lastestArticle = (topLastArticles == null) ? ""
+                : topLastArticles.get(0).getContent().substring(0, 300) + "...";
         request.setAttribute("lastestArticle", lastestArticle);
-        
+
         // Get the requested article by ID
         // If ID is not requested, return 0. It means requesting the lastest article
         String idString = request.getParameter("id");
@@ -59,9 +58,11 @@ public class ArticleController extends HttpServlet {
                 return;
             }
         }
-        if (article != null) article.setContent(article.getContent().replaceAll("\n", "</p><p>"));
-        request.setAttribute("article", article);
-        
+        if (article != null) {
+            article.setContent(article.getContent().replaceAll("\n", "</p><p>"));
+            request.setAttribute("article", article);
+        }
+
         // Display view
         request.getRequestDispatcher("jsp/index.jsp").forward(request, response);
     }
