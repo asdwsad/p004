@@ -4,6 +4,8 @@
     Author     : anhgqse04763
 --%>
 
+<%@page import="java.sql.Timestamp"%>
+<%@page import="java.text.SimpleDateFormat"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
@@ -42,7 +44,11 @@
                             <ul class="ull">
                                 <li class="anh"></li>
                                 <li class="anh2"></li>
-                                <li><p>By ${article.author} | ${article.time}</p></li>
+                                
+                                <%
+                                String fmDate=new SimpleDateFormat("MMMM - dd - yyyy").format((Timestamp) request.getAttribute("articledate"));
+                                %>
+                                <li><p>By ${article.author} | <%=fmDate%></p></li>
                             </ul>
 
 

@@ -60,6 +60,8 @@ public class ArticleController extends HttpServlet {
         }
         if (article != null) {
             article.setContent(article.getContent().replaceAll("\n", "</p><p>"));
+            
+            request.setAttribute("articledate", article.getTime());
             request.setAttribute("article", article);
         }
 
